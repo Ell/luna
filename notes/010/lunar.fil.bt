@@ -1,0 +1,47 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: lunar.fil.bt
+//   Authors: Ell <opensource@ell.dev>
+//   Version: 0.1.0
+//   Purpose: Lunar .fil file format notes
+//  Category: Games
+// File Mask: *.fil
+//  ID Bytes: 2E
+//   History:
+//
+//--- 
+//------------------------------------------------
+
+struct Header {
+    byte magic;
+    FSeek(16);
+    int unused_1;
+    int num_files;
+    int file_size;
+    int unused_2;
+};
+
+// SECTOR_SIZE = 2048
+// offset = size * SECTOR_SIZE
+struct FileEntry {
+    SetForeColor(cWhite);
+    char path[20];
+    SetForeColor(cGreen);
+    int sector;
+    SetForeColor(cLtGreen);
+    int size;
+    SetForeColor(cDkGreen);
+    time_t created;
+};
+
+struct Fil {
+    Header      header;
+    FileEntry   entries[header.num_files] <name=GetEntryName>;
+} file;
+
+string GetEntryName(FileEntry &m)
+{
+    return m.title;
+}
+

@@ -1,0 +1,67 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in library 'libfil'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--lib",
+          "--package=luna-unfil"
+        ],
+        "filter": {
+          "name": "libfil",
+          "kind": "lib"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug executable 'unfil'",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=unfil",
+          "--package=luna-unfil",
+        ],
+        "filter": {
+          "name": "unfil",
+          "kind": "bin"
+        }
+      },
+      "args": [
+        "--input-file=/mnt/e/lunar/copies/korean/install/data/lunadata.fil",
+        "--output-path=/mnt/e/lunar/projects/luna/tmp"
+      ],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in executable 'unfil'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--bin=unfil",
+          "--package=luna-unfil"
+        ],
+        "filter": {
+          "name": "unfil",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
